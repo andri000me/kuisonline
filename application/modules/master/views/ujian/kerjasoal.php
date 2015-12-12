@@ -113,24 +113,26 @@
 		});
 
 		btnSubmit.click(function(){
-			var r = confirm('anda ingin mengakhiri ujian?');
+			var idujian = "<?php echo $this->uri->segment(4); ?>";
+			var idsiswa = "<?php echo $this->session->userdata('id_person'); ?>";
+			data = {'id_siswa':idsiswa, 'id_ujian':idujian};
+			$.ajax({
+				type: "POST",
+				data: data,
+				url: "<?php echo base_url(); ?>kuis/end",
+			});
+			var r = window.confirm('anda ingin mengakhiri?');
 			if (r==true) {
-				var idujian = "<?php echo $this->uri->segment(4); ?>";
-				data = {'id_ujian':idujian};
-				$.ajax({
-					type:"POST",
-					data: data,
-					url: "<?php echo base_url(); ?>kuis/end",
-				});
-				window.location.href="<?php echo base_url(); ?>master/ujian/antrian";
-			}
+				location.href=('<?php echo base_url(); ?>master/ujian/antrian');
+			};
 		});
 
-		btnPilihOpsi.click(function(id){
+		btnPilihOpsi.click(function(){
 			var val = this.id.split('_');
 			var idujian = "<?php echo $this->uri->segment(4); ?>";
 			var idsiswa = "<?php echo $this->session->userdata('id_person'); ?>";
 			console.log("Siswa : "+idsiswa+" IDujian : "+idujian+" IDsoal : "+val[0]+" Ans : "+val[1]);
+			console.log(val);
 			var jawaban = val[1];
 			data = {'id_siswa':idsiswa, 'id_ujian':idujian, 'id_soal':val[0], 'jawaban':val[1]};
 			$.ajax({

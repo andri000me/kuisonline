@@ -41,7 +41,11 @@
 				<table class="table table-bordered">
 					<tr>
 						<td width="30%">Pengajar</td>
-						<td><?php echo $profilguru->row()->nama; ?></td>
+						<?php if ($profilguru != 'administrator') { ?>
+							<td><?php echo $profilguru; ?></td>
+						<?php } else { ?>
+							<td>Administrator</td>
+						<?php } ?>
 					</tr>
 					<tr>
 						<td>Nama</td>

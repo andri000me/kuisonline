@@ -107,7 +107,12 @@ class Nilai extends CI_Controller
 		$idpembuat = $getidmapel->row()->id_pembuat;
 		$data['topikujian'] = $getidmapel->row()->judul;
 		$data['profilmapel'] = $this->db->get_where('pelajaran', array('id'=>$idmapel));
-		$data['profilguru'] = $this->db->get_where('guru', array('id'=>$idpembuat));
+		if ($idpembuat == 0) {
+			$data['profilguru'] = 'Administrator';
+		} else {
+			$myguru = $this->db->get_where('guru', array('id'=>$idpembuat));
+			$data['profilguru'] = $myguru->row()->nama;
+		}
 		$data['nilaiujian'] = $this->db->get_where('ujian_hasil', array('id_ujian'=>$idujian, 'id_siswa'=>$idsiswa));
 		$this->load->view('nilai/detilnilai', $data);
 	}

@@ -6,29 +6,12 @@
 </head>
 <body>
 	<!-- navigasi -->
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="<?php echo base_url(); ?>" class="navbar-brand">KUIS ONLINE</a>
-			</div>
+	<?php $this->load->view('navigasi'); ?>
 
-			<?php 
-				if ($this->session->userdata('level') == 'admin') {
-					$this->load->view('nav-admin');
-				} else if ($this->session->userdata('level') == 'guru') {
-					$this->load->view('nav-guru');
-				} else if ($this->session->userdata('level') == 'siswa') {
-					$this->load->view('nav-siswa');
-				}
-			 ?>
-		</div>
-	</nav>
+	<!-- waktu -->
+	<?php $this->load->view('waktuterkini'); ?>
+
+	<?php $this->load->view('timeout'); ?>
 
 	<div class="container">
 		<div class="row">
@@ -79,6 +62,8 @@
 
 	<script type="text/javascript">
 	$(document).ready(function(){
+		
+
 		var current = 1;
 
 		// get each class

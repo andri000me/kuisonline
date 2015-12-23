@@ -6,29 +6,10 @@
 </head>
 <body>
 	<!-- navigasi -->
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="<?php echo base_url(); ?>" class="navbar-brand">KUIS ONLINE</a>
-			</div>
+	<?php $this->load->view('navigasi'); ?>
 
-			<?php 
-				if ($this->session->userdata('level') == 'admin') {
-					$this->load->view('nav-admin');
-				} else if ($this->session->userdata('level') == 'guru') {
-					$this->load->view('nav-guru');
-				} else if ($this->session->userdata('level') == 'siswa') {
-					$this->load->view('nav-siswa');
-				}
-			 ?>
-		</div>
-	</nav>
+	<!-- waktu -->
+	<?php $this->load->view('waktuterkini'); ?>
 
 	<div class="container">
 		<div class="form-group">
@@ -78,6 +59,7 @@
 					<th>Pembuat</th>
 					<th>Hapus</th>
 					<th>Ubah</th>
+					<th>Peserta</th>
 				</tr>
 				<?php if($list->num_rows() != 0) { ?>
 				<?php foreach($list->result() as $d) { ?>
@@ -98,6 +80,7 @@
 					<td><?php echo $pembuat; ?></td>
 					<td><a href="<?php echo base_url(); ?>master/<?php echo $this->uri->segment(2); ?>/delete/<?php echo $d->id; ?>">Hapus</a></td>
 					<td><a href="<?php echo base_url(); ?>master/<?php echo $this->uri->segment(2); ?>/edit/<?php echo $d->id; ?>">Ubah</a></td>
+					<td><button type="button" onclick="lihatPeserta(<?php echo $d->id; ?>)" value="<?php echo $d->id; ?>" class="btn btn-sm btn-info">Lihat Peserta</button></td>
 				</tr>
 				<?php } ?>
 				<?php } else { ?>
@@ -106,6 +89,17 @@
 				</tr>
 				<?php } ?>
 			</table>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<div class="panel-title" align="center">DATA PESERTA UJIAN</div>
+			</div>
+			<div class="panel-body">
+				<div id="dataPeserta"></div>
+			</div>
 		</div>
 	</div>
 
@@ -139,6 +133,20 @@
 			});
 		}
 	});
+
+	function lihatPeserta(idKuis){
+		console.log("KUIS : "+idKuis);
+		mydata = {'idkuis':idKuis};
+		$('#dataPeserta').empty();
+		$.ajax({
+			type: "POST",
+			data: mydata,
+			url: "<?php echo base_url(); ?>master/ujian/peserta",
+			success: function(e){
+				$('#dataPeserta').append(e);
+			}
+		});
+	}
 	</script>
 </body>
 </html>

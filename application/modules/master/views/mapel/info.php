@@ -6,21 +6,10 @@
 </head>
 <body>
 	<!-- navigasi -->
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="<?php echo base_url(); ?>" class="navbar-brand">KUIS ONLINE</a>
-			</div>
+	<?php $this->load->view('navigasi'); ?>
 
-			<?php $this->load->view('nav-admin'); ?>
-		</div>
-	</nav>
+	<!-- waktu -->
+	<?php $this->load->view('waktuterkini'); ?>
 
 	<div class="container">
 		<div class="jumbotron" align="center">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2015 at 01:36 PM
+-- Generation Time: Dec 22, 2015 at 11:37 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `siswa` (
   `nama` varchar(100) DEFAULT NULL,
   `jurusan` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `siswa`
@@ -141,7 +141,8 @@ INSERT INTO `siswa` (`id`, `nama`, `jurusan`) VALUES
 (5, 'siswa ips 1', 'IPS'),
 (6, 'siswa ips 2', 'IPS'),
 (7, 'siswa ips 3', 'IPS'),
-(8, 'siswa ips 4', 'IPS');
+(8, 'siswa ips 4', 'IPS'),
+(9, 'Siswa ipa 5', 'IPA');
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `ujian` (
   `id_mapel` int(11) DEFAULT NULL,
   `id_pembuat` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `ujian`
@@ -205,7 +206,8 @@ INSERT INTO `ujian` (`id`, `judul`, `jumlah_soal`, `waktu`, `id_mapel`, `id_pemb
 (1, 'Ujian fisika 1', 4, 2, 1, 1),
 (2, 'Ujian fisika 2', 4, 2, 1, 1),
 (3, 'Ujian fisika 3', 4, 2, 1, 1),
-(7, 'ujian kimia 1', 2, 2, 2, 2);
+(7, 'ujian kimia 1', 2, 2, 2, 2),
+(8, 'tes fisika', 3, 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -221,25 +223,17 @@ CREATE TABLE IF NOT EXISTS `ujian_detil` (
   `jawaban` char(10) DEFAULT NULL,
   `opsi_benar` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `ujian_detil`
 --
 
 INSERT INTO `ujian_detil` (`id`, `id_ujian`, `id_siswa`, `id_soal`, `jawaban`, `opsi_benar`) VALUES
-(74, 7, 1, 5, 'A', 'A'),
-(75, 7, 1, 7, 'B', 'C'),
-(76, 3, 1, 3, 'A', 'C'),
-(77, 3, 1, 4, 'B', 'D'),
-(78, 3, 1, 1, 'A', 'A'),
-(79, 3, 1, 2, 'B', 'B'),
-(80, 1, 1, 2, 'A', 'B'),
-(81, 1, 1, 1, 'B', 'A'),
-(82, 1, 1, 3, 'B', 'C'),
-(83, 1, 1, 4, 'A', 'D'),
-(84, 7, 2, 8, 'D', 'D'),
-(85, 7, 2, 6, 'B', 'B');
+(10, 1, 1, 2, 'A', 'B'),
+(11, 1, 1, 3, 'C', 'C'),
+(12, 1, 1, 1, 'A', 'A'),
+(13, 1, 1, 4, 'D', 'D');
 
 -- --------------------------------------------------------
 
@@ -254,17 +248,14 @@ CREATE TABLE IF NOT EXISTS `ujian_hasil` (
   `jumlah_benar` int(11) DEFAULT NULL,
   `nilai` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
 
 --
 -- Dumping data for table `ujian_hasil`
 --
 
 INSERT INTO `ujian_hasil` (`id`, `id_ujian`, `id_siswa`, `jumlah_benar`, `nilai`) VALUES
-(21, 7, 1, 1, 50),
-(22, 3, 1, 2, 50),
-(23, 1, 1, 0, 0),
-(24, 7, 2, 2, 100);
+(77, 1, 1, 3, 75);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

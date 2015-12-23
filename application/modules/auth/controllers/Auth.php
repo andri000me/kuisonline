@@ -40,7 +40,26 @@ class Auth extends CI_Controller
 				redirect('home');
 			}
 		} else {
-			echo "mungkin belum terdaftar";
+			?> 
+				<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>public/css/bootstrap.min.css">
+				<div style="margin-top: 100px;" class="container">
+					<div class="alert alert-info" align="center">
+						<div class="form-group">
+							<label class="control-label">
+								MUNGKIN BELUM TERDAFTAR
+							</label>
+						</div>
+						<div class="form-group">
+							<button onclick="backtologin()" id="btntologin" name="btntologin" class="btn btn-sm btn-primary">Klik Untuk Login</button>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+				function backtologin() {
+					location.href="<?php echo base_url(); ?>auth";
+				}
+				</script>
+			 <?php
 		}
 	}
 

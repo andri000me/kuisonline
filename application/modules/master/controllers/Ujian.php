@@ -113,11 +113,46 @@ class Ujian extends CI_Controller
 			$getidmp = $this->db->get_where('ujian', array('id'=>$uri));
 			$idmp = $getidmp->row()->id_mapel;
 			$limit = $getidmp->row()->jumlah_soal;
+			$data['timeout'] = $getidmp->row()->waktu;
 			$data['soal'] = $this->db->query("SELECT * FROM soal WHERE id_mapel = $idmp ORDER BY RAND() LIMIT $limit;");
 
 			$this->load->view($this->view_dir_name.'/kerjasoal', $data);
 		} else {
 			redirect('auth');
+		}
+	}
+
+	function peserta()
+	{
+		$idkuis = $this->input->post('idkuis');
+		$getdb = $this->db->query("select * from siswa join ujian_hasil where ujian_hasil.id_ujian = $idkuis group by id_siswa;");
+		if ($getdb->num_rows() != 0) {
+			?>
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>NO</th>
+							<th>Nama Peserta</th>
+							<th>Nilai</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php foreach($getdb->result() as $d) { ?>
+						<tr>
+							<td><?php echo $d->id; ?></td>
+							<td><?php echo $d->nama; ?></td>
+							<td><?php echo $d->nilai; ?></td>
+						</tr>
+					<?php } ?>
+					</tbody>
+				</table>
+			</div>
+			<?php
+		} else {
+			?>
+			<div class="alert alert-danger">BELUM ADA SISWA YANG MENGIKUTI</div>
+			<?php
 		}
 	}
 }

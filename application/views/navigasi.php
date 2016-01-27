@@ -39,6 +39,7 @@
 							<li class=""><a href="<?php echo base_url(); ?>home">Home</a></li>
 							<li class=""><a href="<?php echo base_url(); ?>master/soal">Data Soal</a></li>
 							<li class=""><a href="<?php echo base_url(); ?>master/ujian">Data Ujian</a></li>
+							<li class=""><a href="<?php echo base_url(); ?>uploadfile">Upload</a></li>
 						</ul>
 
 						<ul class="nav navbar-nav navbar-right">

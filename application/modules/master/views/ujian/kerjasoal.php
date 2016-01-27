@@ -14,6 +14,14 @@
 	<?php $this->load->view('timeout'); ?>
 
 	<div class="container">
+		<div class="form-group">
+			<button id="cetakSoal" class="btn btn-sm btn-info center"><span><i class="glyphicon glyphicon-print"></i></span> CETAK SOAL</button>
+		</div>
+
+		<div id="cetakansoal"></div>
+	</div>
+
+	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="table table-responsive">
@@ -143,6 +151,19 @@
 			btnSubmit.show();
 		}
 	}
+	</script>
+
+	<script type="text/javascript">
+		$('#cetakSoal').click(function(){
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>cetaksoal/file/<?php echo $this->uri->segment(4); ?>",
+				data: {"idsoal":<?php echo $this->uri->segment(4); ?>},
+				success: function(e){
+					location.href = "<?php echo base_url(); ?>cetaksoal/file/<?php echo $this->uri->segment(4); ?>";
+				}
+			});
+		});
 	</script>
 </body>
 </html>
